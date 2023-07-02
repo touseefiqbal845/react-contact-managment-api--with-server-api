@@ -4,7 +4,8 @@ import ContactCard from "./ContactCard";
 
 const ContactList = (props) => {
   const inputEl = useRef("");
-  const deleteConactHandler = (id) => {
+
+  const deleteContactHandler = (id) => {
     props.getContactId(id);
   };
 
@@ -12,7 +13,7 @@ const ContactList = (props) => {
     return (
       <ContactCard
         contact={contact}
-        clickHandler={deleteConactHandler}
+        clickHandler={deleteContactHandler}
         key={contact.id}
       />
     );
@@ -21,6 +22,7 @@ const ContactList = (props) => {
   const getSearchTerm = () => {
     props.searchKeyword(inputEl.current.value);
   };
+
   return (
     <div className="main">
       <h2>
@@ -43,9 +45,11 @@ const ContactList = (props) => {
         </div>
       </div>
       <div className="ui celled list">
-        {renderContactList.length > 0
-          ? renderContactList
-          : "No Contacts available"}
+        {renderContactList.length > 0 ? (
+          renderContactList
+        ) : (
+          <p>No Contacts available</p>
+        )}
       </div>
     </div>
   );
