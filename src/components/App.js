@@ -32,16 +32,16 @@ function App() {
     console.log(contact);
   };
 
-  useEffect(() => {
-     const retrieveContacts = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY));
-     if (retrieveContacts) {
-  
-    const getallContacts =async ()=>{
+useEffect(() => {
+  const retrieveContacts = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY));
+  if (retrieveContacts) {
+    const getallContacts = async () => {
       const allContacts = await retrieveContacts();
       if (allContacts) setContacts(allContacts);
-    }
-     getallContacts();
-  }, []);
+    };
+    getallContacts();
+  }
+}, []);
 const updateContactHandler = async (contact) => {
     const response = await api.put(`/contacts/${contact.id}`, contact);
     const { id, name, email } = response.data;
