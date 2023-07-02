@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "./App.css";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import { v4 as uuid } from 'uuid';
+import { v4 as uuid } from "uuid";
 import api from "../api/contacts";
 import Header from "./Header";
 import AddContact from "./AddContact";
@@ -12,37 +12,26 @@ import EditContact from "./EditContact";
 
 function App() {
   const LOCAL_STORAGE_KEY = "contacts";
-  const [contacts, setContacts] = useState([]);   
-    const [searchTerm, setSearchTerm] = useState("");
-  const [searchResults, setSearchResults] = useState([]);   // Array 
+  const [contacts, setContacts] = useState([]);
+  const [searchTerm, setSearchTerm] = useState("");
+  const [searchResults, setSearchResults] = useState([]);
 
-  const retrieveContacts =async () => {
-    const responce = await api.get("/contacts");
-    return responce.data;
-    };
+  const retrieveContacts = async () => {
+    const response = await api.get("/contacts");
+    return response.data;
+  };
 
   const addContactHandler = async (contact) => {
-      const request ={
-        id: uuid(),
-        ...contact,
-      }
-      const responce =await api.post("/contacts", request);
-    setContacts([...contacts, responce.data]);
-
+    const request = {
+      id: uuid(),
+      ...contact,
+    };
+    const response = await api.post("/contacts", request);
+    setContacts([...contacts, response.data]);
     console.log(contact);
   };
 
-useEffect(() => {
-  const retrieveContacts = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY));
-  if (retrieveContacts) {
-    const getallContacts = async () => {
-      const allContacts = await retrieveContacts();
-      if (allContacts) setContacts(allContacts);
-    };
-    getallContacts();
-  }
-}, []);
-const updateContactHandler = async (contact) => {
+  const updateContactHandler = async (contact) => {
     const response = await api.put(`/contacts/${contact.id}`, contact);
     const { id, name, email } = response.data;
     setContacts(
@@ -51,7 +40,8 @@ const updateContactHandler = async (contact) => {
       })
     );
   };
-   const searchHandler = (searchTerm) => {
+
+  const searchHandler = (searchTerm) => {
     setSearchTerm(searchTerm);
     if (searchTerm !== "") {
       const newContactList = contacts.filter((contact) => {
@@ -65,18 +55,27 @@ const updateContactHandler = async (contact) => {
       setSearchResults(contacts);
     }
   };
+
   const removeContactHandler = async (id) => {
     await api.delete(`/contacts/${id}`);
     const newContactList = contacts.filter((contact) => {
       return contact.id !== id;
     });
     setContacts(newContactList);
-  }
+  };
 
   useEffect(() => {
-     localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(contacts));
+    const retrieveContacts = async () => {
+      const allContacts = await retrieveContacts();
+      if (allContacts) setContacts(allContacts);
+    };
+    retrieveContacts();
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(contacts));
   }, [contacts]);
- 
+
   return (
     <div className="ui container">
       <Router>
@@ -88,17 +87,23 @@ const updateContactHandler = async (contact) => {
             render={(props) => (
               <ContactList
                 {...props}
-                contacts={searchTerm.length < 1 ? contacts : searchResults}
+                contacts={
+                  searchTerm.length < 1 ? contacts : searchResults
+                }
                 getContactId={removeContactHandler}
                 term={searchTerm}
                 searchKeyword={searchHandler}
               />
             )}
           />
-          <Route exact path="/add" render={(props) => (
-            <AddContact {...props} addContactHandler={addContactHandler} />
-          )} />
-           <Route
+          <Route
+            exact
+            path="/add"
+            render={(props) => (
+              <AddContact {...props} addContactHandler={addContactHandler} />
+            )}
+          />
+          <Route
             path="/edit"
             render={(props) => (
               <EditContact
@@ -115,3 +120,4 @@ const updateContactHandler = async (contact) => {
 }
 
 export default App;
+
