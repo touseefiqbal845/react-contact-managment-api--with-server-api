@@ -11,7 +11,7 @@ import ContactDetail from "./ContactDetail";
 import EditContact from "./EditContact";
 
 function App() {
-  // const LOCAL_STORAGE_KEY = "contacts";
+  const LOCAL_STORAGE_KEY = "contacts";
   const [contacts, setContacts] = useState([]);   
     const [searchTerm, setSearchTerm] = useState("");
   const [searchResults, setSearchResults] = useState([]);   // Array 
