@@ -1,6 +1,70 @@
+// IF DATA Y=U WANTRETRIEVE FROM JSON API
+// import React, { useRef } from "react";
+// import { Link } from "react-router-dom";
+// import ContactCard from "./ContactCard";
+
+// const ContactList = (props) => {
+//   const inputEl = useRef("");
+
+//   const deleteContactHandler = (id) => {
+//     props.getContactId(id);
+//   };
+
+//   const renderContactList = props.contacts.map((contact) => {
+//     return (
+//       <ContactCard
+//         contact={contact}
+//         clickHandler={deleteContactHandler}
+//         key={contact.id}
+//       />
+//     );
+//   });
+
+//   const getSearchTerm = () => {
+//     props.searchKeyword(inputEl.current.value);
+//   };
+
+//   return (
+//     <div className="main">
+//       <h2>
+//         Contact List
+//         <Link to="/add">
+//           <button className="ui button blue right">Add Contact</button>
+//         </Link>
+//       </h2>
+//       <div className="ui search">
+//         <div className="ui icon input">
+//           <input
+//             ref={inputEl}
+//             type="text"
+//             placeholder="Search Contacts"
+//             className="prompt"
+//             value={props.term}
+//             onChange={getSearchTerm}
+//           />
+//           <i className="search icon"></i>
+//         </div>
+//       </div>
+//       <div className="ui celled list">
+//         {renderContactList.length > 0 ? (
+//           renderContactList
+//         ) : (
+//           <p>No Contacts available</p>
+//         )}
+//       </div>
+//     </div>
+//   );
+// };
+
+// export default ContactList;
+
+
+
+// IF You Want from LOCAL STORAGE  
+// ContactList.js
 import React, { useRef } from "react";
-import { Link } from "react-router-dom";
 import ContactCard from "./ContactCard";
+import { Link } from "react-router-dom";
 
 const ContactList = (props) => {
   const inputEl = useRef("");
@@ -45,14 +109,13 @@ const ContactList = (props) => {
         </div>
       </div>
       <div className="ui celled list">
-        {renderContactList.length > 0 ? (
-          renderContactList
-        ) : (
-          <p>No Contacts available</p>
-        )}
+        {renderContactList.length > 0
+          ? renderContactList
+          : "No Contacts available"}
       </div>
     </div>
   );
 };
 
 export default ContactList;
+
