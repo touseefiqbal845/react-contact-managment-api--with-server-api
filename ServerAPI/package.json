@@ -4,16 +4,13 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "json-server -p $PORT -w db.json"
+    "start": "json-server -p 3000 -w db.json"
+   
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
     "json-server": "^0.17.3"
-  },
-  "engines": {
-    "node": ">=12.22.0"
-  },
-  "enginesStrict": true
+  }
 }
