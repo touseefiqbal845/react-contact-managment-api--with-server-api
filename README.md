@@ -6,6 +6,8 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 In the project directory, you can run:
 
+###  `if server api not run plz add in other folder beside contac app add both run differnet local host but server api should on Localhost:3000 default -Stay Blessed`
+
 ### `npm start`
 
 Runs the app in the development mode.\

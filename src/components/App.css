@@ -1,0 +1,40 @@
+.main {
+  margin-top: 5em;
+
+}
+
+.center {
+  justify-content: center;
+  padding: 10px;
+}
+.ui.button.blue.right {
+   margin-left: 830px;
+}
+.ui.search input {
+  width: 100%;
+  border-radius: 0 !important;
+}
+
+.item {
+  padding: 25px 0px !important;
+  margin-top: 15px;
+}
+
+i.icon {
+  float: right;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.contact-card {
+  cursor: pointer;
+  color: blue;
+  text-decoration: none;
+}
+
+.contact-card:hover {
+  text-decoration: none;
+}
+  
+
+    
