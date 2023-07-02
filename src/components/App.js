@@ -65,11 +65,11 @@ function App() {
   };
 
   useEffect(() => {
-    const retrieveContacts = async () => {
+    const fetchContacts = async () => {
       const allContacts = await retrieveContacts();
       if (allContacts) setContacts(allContacts);
     };
-    retrieveContacts();
+    fetchContacts();
   }, []);
 
   useEffect(() => {
@@ -120,4 +120,5 @@ function App() {
 }
 
 export default App;
+
 
