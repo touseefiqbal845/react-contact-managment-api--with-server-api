@@ -36,7 +36,7 @@ i.icon {
   text-decoration: none;
 }
  @media (max-width: 500px) {
-.ui.button.blue.right {
+.ui-button-blue-right {
     margin-left: 6px;
     padding: 9px;
     margin-top: 28px;
