@@ -35,6 +35,8 @@ i.icon {
 .contact-card:hover {
   text-decoration: none;
 }
-  
+ @media (max-width: 500px) {
+
+ }
 
     
